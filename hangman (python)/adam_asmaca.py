@@ -1,5 +1,6 @@
 # Random Word kütüphanesinden rastgele kelime alıyoruz.
 from random_word import RandomWords
+
 r = RandomWords()
 rand_word = r.get_random_word()
 # Aldığımız kelimenin tek kelime olmasını sağlıyoruz.
@@ -16,10 +17,81 @@ current_attempts = 0
 # Yapılacak maksimum deneme sayısı.
 max_attempts = 10
 
+# ASCII art for hangman stages
+hangman_stages = [
+    """
+     -----
+     |   |
+         |
+         |
+         |
+         |
+    --------
+    """,
+    """
+     -----
+     |   |
+     O   |
+         |
+         |
+         |
+    --------
+    """,
+    """
+     -----
+     |   |
+     O   |
+     |   |
+         |
+         |
+    --------
+    """,
+    """
+     -----
+     |   |
+     O   |
+    /|   |
+         |
+         |
+    --------
+    """,
+    """
+     -----
+     |   |
+     O   |
+    /|\\  |
+         |
+         |
+    --------
+    """,
+    """
+     -----
+     |   |
+     O   |
+    /|\\  |
+    /    |
+         |
+    --------
+    """,
+    """
+     -----
+     |   |
+     O   |
+    /|\\  |
+    / \\  |
+         |
+    --------
+    """,
+]
+
 # Yaptığımız deneme maksimum denemeden küçük olduğu sürece
 while current_attempts < max_attempts:
+    # Hangman visualization
+    print(hangman_stages[current_attempts])
+    
     # Girdi al
-    x = input("Enter a character: ")
+    x = input("Enter a character: ").lower()
+    
     # Found bool'u false başlıyor.
     found = False
     for i in range(len(array_rand_word)):
@@ -43,4 +115,5 @@ while current_attempts < max_attempts:
         break
 
 if "_" in guessed_word:
+    print(hangman_stages[-1])
     print("Out of attempts. The word was:", "".join(array_rand_word))
